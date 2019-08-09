@@ -15,6 +15,10 @@
 - Don't model money as a decimal, introduce a Money class to keep amount and currency together.
 - Make a clean-cut branching instruction: Either a guard OR full if-then-else. Avoid incomplete if-then instructions without else.
 
+## Patterns
+
+- State pattern: Object of the state class represents one state. Change the object when you want to change the state.
+
 ### Symmetry
 
 Make any ifs without else clauses symmetrical, make the "do nothing" case explicit, make the implicit explicit. Make it explicit that the if and else lead to different blocks of code. Extract the empty block into a new method that does nothing:
