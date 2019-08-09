@@ -7,7 +7,6 @@ namespace MoreObjectOrientedCSharp.ObsoleteBooleanTests
         public decimal Balance { get; private set; }
         private bool IsVerified { get; set; }
         private bool IsClosed { get; set; }
-        private bool IsFrozen { get; set; }
 
         private Action OnUnfreeze { get; }
         private Action ManageUnfreezing { get; set; }
@@ -43,9 +42,8 @@ namespace MoreObjectOrientedCSharp.ObsoleteBooleanTests
 
         private void Unfreeze()
         {
-            this.IsFrozen = false;
             this.OnUnfreeze();
-            this.ManageUnfreezing = this.StayUnfrozen;
+            this.ManageUnfreezing = this.StayUnfrozen; 
         }
 
         public void HolderVerified()
@@ -66,7 +64,6 @@ namespace MoreObjectOrientedCSharp.ObsoleteBooleanTests
             }
             if (!this.IsVerified)
                 return; // Account must be verified
-            this.IsFrozen = true;
             this.ManageUnfreezing = this.Unfreeze;
         }
     }
