@@ -66,6 +66,7 @@ namespace MoreObjectOrientedCSharp.ObsoleteBooleanTests
             if (!this.IsVerified)
                 return; // Account must be verified
             this.IsFrozen = true;
+            this.ManageUnfreezing = this.Unfreeze;
         }
     }
 }
