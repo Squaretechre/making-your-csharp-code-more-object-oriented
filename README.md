@@ -20,16 +20,17 @@
 Make any ifs without else clauses symmetrical, make the "do nothing" case explicit, make the implicit explicit. Make it explicit that the if and else lead to different blocks of code. Extract the empty block into a new method that does nothing:
 
 ```
+		// no else block
 		if (this.IsFrozen) {  
 			this.Unfreeze()
-		}							// no else block
-```
+		}
 
 ```	
+		// else block introduced and method that does nothing extracted
 		if (this.IsFrozen) {
 			this.Unfreeze()
 		}
-		else {						// else block introduced
-			this.StayUnfrozen()		// method that does nothing extracted
+		else {
+			this.StayUnfrozen()
 		}
 ```		
