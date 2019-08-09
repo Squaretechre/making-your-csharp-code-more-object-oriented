@@ -28,11 +28,7 @@ namespace MoreObjectOrientedCSharp.ObsoleteBooleanTests
         {
             if (this.IsClosed)
                 return; // Or do something else... 
-            if (this.IsFrozen)
-            {
-                this.IsFrozen = false;
-                this.OnUnfreeze();
-            }
+            ManageUnfreezing();
             this.Balance += amount;
         }
 
@@ -50,12 +46,17 @@ namespace MoreObjectOrientedCSharp.ObsoleteBooleanTests
                 return; // Or do something else...
             if (this.IsClosed)
                 return; // Or do something else... 
+            ManageUnfreezing();
+            this.Balance -= amount;
+        }
+
+        private void ManageUnfreezing()
+        {
             if (this.IsFrozen)
             {
                 this.IsFrozen = false;
                 this.OnUnfreeze();
             }
-            this.Balance -= amount;
         }
 
         public void HolderVerified()
