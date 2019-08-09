@@ -24,6 +24,7 @@ Make any ifs without else clauses symmetrical, make the "do nothing" case explic
 		if (this.IsFrozen) {  
 			this.Unfreeze()
 		}
+```
 
 ```	
 		// else block introduced and method that does nothing extracted
