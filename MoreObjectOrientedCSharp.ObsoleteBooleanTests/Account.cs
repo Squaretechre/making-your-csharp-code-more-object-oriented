@@ -58,8 +58,13 @@ namespace MoreObjectOrientedCSharp.ObsoleteBooleanTests
             }
             else
             {
-                // Do nothing
+                this.StayUnfrozen();
             }
+        }
+
+        private void StayUnfrozen()
+        {
+            // Do nothing
         }
 
         private void Unfreeze()
