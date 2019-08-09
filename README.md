@@ -22,7 +22,7 @@ Make any ifs without else clauses symmetrical, make the "do nothing" case explic
 ```
 		if (this.IsFrozen) {  
 			this.Unfreeze()
-		} 							// no else block
+		}							// no else block
 ```
 
 ```	
