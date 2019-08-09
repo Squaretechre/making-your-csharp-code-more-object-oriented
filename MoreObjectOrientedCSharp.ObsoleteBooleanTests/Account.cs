@@ -15,20 +15,7 @@ namespace MoreObjectOrientedCSharp.ObsoleteBooleanTests
         public Account(Action onUnfreeze)
         {
             this.OnUnfreeze = onUnfreeze;
-
-            this.ManageUnfreezing = () =>
-            {
-                {
-                    if (this.IsFrozen)
-                    {
-                        Unfreeze();
-                    }
-                    else
-                    {
-                        this.StayUnfrozen();
-                    }
-                }
-            };
+            this.ManageUnfreezing = this.StayUnfrozen;
         }
 
         // How many different ways are there to execute the Deposit method?
