@@ -54,13 +54,18 @@ namespace MoreObjectOrientedCSharp.ObsoleteBooleanTests
         {
             if (this.IsFrozen)
             {
-                this.IsFrozen = false;
-                this.OnUnfreeze();
+                Unfreeze();
             }
             else
             {
                 // Do nothing
             }
+        }
+
+        private void Unfreeze()
+        {
+            this.IsFrozen = false;
+            this.OnUnfreeze();
         }
 
         public void HolderVerified()
