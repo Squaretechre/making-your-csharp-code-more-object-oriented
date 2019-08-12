@@ -5,66 +5,37 @@ namespace MoreObjectOrientedCSharp.ObsoleteBooleanTests
     public class Account
     {
         public decimal Balance { get; private set; }
-        private bool IsVerified { get; set; }
-        private bool IsClosed { get; set; }
 
-        private Action OnUnfreeze { get; }
-        private Action ManageUnfreezing { get; set; }
+        private IAccountState State { get; set; }
 
         public Account(Action onUnfreeze)
         {
-            this.OnUnfreeze = onUnfreeze;
-            this.ManageUnfreezing = this.StayUnfrozen;
+            this.State = new NotVerified(onUnfreeze);
         }
 
         public void Deposit(decimal amount)
         {
-            if (this.IsClosed)
-                return; // Or do something else... 
-            ManageUnfreezing();
-            this.Balance += amount;
+            this.State = this.State.Deposit(() => { this.Balance += amount; });
         }
 
         public void Withdraw(decimal amount)
         {
-            if (!this.IsVerified)
-                return; // Or do something else...
-            if (this.IsClosed)
-                return; // Or do something else... 
-            ManageUnfreezing();
-            this.Balance -= amount;
-        }
-
-        private void StayUnfrozen()
-        {
-            // Do nothing
-        }
-
-        private void Unfreeze()
-        {
-            this.OnUnfreeze();
-            this.ManageUnfreezing = this.StayUnfrozen; 
+            this.State = this.State.Withdraw(() => { this.Balance -= amount; });
         }
 
         public void HolderVerified()
         {
-            this.IsVerified = true;
+            this.State = this.State.HolderVerified();
         }
 
         public void Close()
         {
-            this.IsClosed = true;
+            this.State = this.State.Close();
         }
 
         public void Freeze()
         {
-            if (this.IsClosed)
-            {
-                return; // Account must not be closed
-            }
-            if (!this.IsVerified)
-                return; // Account must be verified
-            this.ManageUnfreezing = this.Unfreeze;
+            this.State = this.State.Freeze();
         }
     }
 }

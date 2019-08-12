@@ -9,15 +9,28 @@
 - Code testing account's state is explicit, explicit condition tests make execution of code complicated
 - Start worrying as soon as number of unit tests has started to double with every new feature added
 - Good to distribute work through graph of objects, want to verify system under test triggered correct side effect in collaborator. Not always the case, sometimes one object acts as the facade for a small cluster of objects and you only need to test through the interface of that class.
+- It's a good sign to see that there are interation tests.
+- After refactoring to the State Pattern, the `Account` class is left with one responsibility, to manage its balance. The logic for managing state transitions is handled by separate state classes. Each state also accepts callbacks from `Account` which it will invoke if doing so is a valid operation for that state.
 
 ### Advice
 
 - Don't model money as a decimal, introduce a Money class to keep amount and currency together.
 - Make a clean-cut branching instruction: Either a guard OR full if-then-else. Avoid incomplete if-then instructions without else.
 
-## Patterns
+### State Pattern
 
-- State pattern: Object of the state class represents one state. Change the object when you want to change the state.
+- Object of the state class represents one state. Change the object when you want to change the state.
+
+### Consequences of the State Pattern
+
+- Class doesn't have to represent its state explicityly anymore.
+- Class doesn't have to manage state transition logic.
+- No more branching.
+- The runtime type of the state object replaces branching.
+- Dynamic dispatch used to choose one implementation or the other.
+- Class that uses state becomes simple, it can focus on its primary role.
+- Other roles are delegated to concrete state classes.
+- Each concrete class is simple.
 
 ### Symmetry
 
@@ -38,4 +51,22 @@ Make any ifs without else clauses symmetrical, make the "do nothing" case explic
 		else {
 			this.StayUnfrozen()
 		}
-```		
+```
+
+### Callbacks in Object-oriented Design
+
+Two operations are coupled where a call a call to `OperationA` must be followed by a call to `OperationB`:
+
+```
+	OperationA();
+	OperationB();
+```
+
+The callback principle, pass `OperationB` as an argument to `OperationA` and let `OperationA` call `OperationB` at its end.
+
+```
+	OperationA(f) {
+		// ...
+		f();
+	}
+```
