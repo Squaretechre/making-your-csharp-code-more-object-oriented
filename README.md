@@ -70,3 +70,7 @@ The callback principle, pass `OperationB` as an argument to `OperationA` and let
 		f();
 	}
 ```
+
+## Keeping the Focus on Domain Logic with Sequences
+
+- Gap between the semantics of the requirement to find the cheapest painter and the original implementation using looping and branching.
