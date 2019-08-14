@@ -81,3 +81,7 @@ The callback principle, pass `OperationB` as an argument to `OperationA` and let
 							- Aggregate() walks the sequence once
 - Loops and branching instructions are infrastructure. Don't deal with infrastructure, deal with functional requirements.
 	- Pick an available painter with the minimum estimate cost.
+
+### Advice
+
+- Implement extension methods only to wrap infrastructural code which is likely to never change.
