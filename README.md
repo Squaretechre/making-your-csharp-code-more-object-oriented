@@ -74,3 +74,6 @@ The callback principle, pass `OperationB` as an argument to `OperationA` and let
 ## Keeping the Focus on Domain Logic with Sequences
 
 - Gap between the semantics of the requirement to find the cheapest painter and the original implementation using looping and branching.
+- Problem: Given a sequence of N elements, find the best fitting one.
+	- Bad idea: 	Sorting - sort the sequence and pick the first element. Yields `O(NlogN)` where N is the length of the sequence.
+	- Better idea:	Picking - Yields `O(N)` and execution time should be proportional to the length of the sequence.
