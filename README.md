@@ -76,4 +76,8 @@ The callback principle, pass `OperationB` as an argument to `OperationA` and let
 - Gap between the semantics of the requirement to find the cheapest painter and the original implementation using looping and branching.
 - Problem: Given a sequence of N elements, find the best fitting one.
 	- Bad idea: 	Sorting - sort the sequence and pick the first element. Yields `O(NlogN)` where N is the length of the sequence.
+							- OrderBy(x => {}).First() invokes the predicate for each element of the sequence
 	- Better idea:	Picking - Yields `O(N)` and execution time should be proportional to the length of the sequence.
+							- Aggregate() walks the sequence once
+- Loops and branching instructions are infrastructure. Don't deal with infrastructure, deal with functional requirements.
+	- Pick an available painter with the minimum estimate cost.
